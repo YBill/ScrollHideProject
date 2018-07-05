@@ -62,12 +62,12 @@ public class Tab4Fragment extends BaseFragment {
                 case MotionEvent.ACTION_MOVE:
                     if (Math.abs(event.getY() - startY) > touchSlop) {
                         if (event.getY() > startY) {
-                            Log.e("Bill", "下滑");
+                            Log.e("Bill", "下滑 显示");
                             if (bottomView.getTranslationY() != 0) {
                                 bottomAnimator(false, bottomView.getTranslationY(), 0);
                             }
                         } else if (event.getY() < startY) {
-                            Log.e("Bill", "上滑");
+                            Log.e("Bill", "上滑 隐藏");
                             if (bottomView.getTranslationY() == 0) {
                                 bottomAnimator(true, bottomView.getTranslationY(), bottomView.getHeight());
                             }
@@ -80,7 +80,7 @@ public class Tab4Fragment extends BaseFragment {
         }
     };
 
-    private void bottomAnimator(final boolean isShow, float... values) {
+    private void bottomAnimator(final boolean isHide, float... values) {
         if (footerAnimator != null && footerAnimator.isRunning()) {
             return;
         }
@@ -89,13 +89,13 @@ public class Tab4Fragment extends BaseFragment {
         footerAnimator.addListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationStart(Animator animation) {
-                if (!isShow)
+                if (!isHide)
                     bottomView.setVisibility(View.VISIBLE);
             }
 
             @Override
             public void onAnimationEnd(Animator animation) {
-                if (isShow)
+                if (isHide)
                     bottomView.setVisibility(View.INVISIBLE);
             }
         });

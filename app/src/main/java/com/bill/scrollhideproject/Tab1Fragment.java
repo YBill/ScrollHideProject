@@ -58,7 +58,7 @@ public class Tab1Fragment extends BaseFragment {
                     if (dy > 0) {
                         // 上滑
                         if (bottomView.getTranslationY() == 0) {
-                            bottomAnimator(true, bottomView.getTranslationY(), bottomView.getHeight());
+                            bottomAnimator(true, 0, bottomView.getHeight());
                         }
                     } else if (dy < 0) {
                         // 下滑
@@ -73,7 +73,7 @@ public class Tab1Fragment extends BaseFragment {
         });
     }
 
-    private void bottomAnimator(final boolean isShow, float... values) {
+    private void bottomAnimator(final boolean isHide, float... values) {
         if (footerAnimator != null && footerAnimator.isRunning()) {
             return;
         }
@@ -83,13 +83,13 @@ public class Tab1Fragment extends BaseFragment {
         footerAnimator.addListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationStart(Animator animation) {
-                if (!isShow)
+                if (!isHide)
                     bottomView.setVisibility(View.VISIBLE);
             }
 
             @Override
             public void onAnimationEnd(Animator animation) {
-                if (isShow)
+                if (isHide)
                     bottomView.setVisibility(View.INVISIBLE);
             }
         });

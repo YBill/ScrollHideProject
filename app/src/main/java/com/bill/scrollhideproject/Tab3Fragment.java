@@ -61,7 +61,7 @@ public class Tab3Fragment extends BaseFragment {
         });
     }
 
-    private void bottomAnimator(final boolean isShow, float... values) {
+    private void bottomAnimator(final boolean isHide, float... values) {
         if (footerAnimator != null && footerAnimator.isRunning()) {
             return;
         }
@@ -70,13 +70,13 @@ public class Tab3Fragment extends BaseFragment {
         footerAnimator.addListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationStart(Animator animation) {
-                if (!isShow)
+                if (!isHide)
                     bottomView.setVisibility(View.VISIBLE);
             }
 
             @Override
             public void onAnimationEnd(Animator animation) {
-                if (isShow)
+                if (isHide)
                     bottomView.setVisibility(View.INVISIBLE);
             }
         });
